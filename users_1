@@ -1,22 +1,40 @@
+import json
+
+
 # Создание библеотеки пользователей
 n_us = {}
+
 name = input("Здравствуйте!Я Ваш курьер\nвsедите Ваше имя\n")
-print("Привет " + name.title() + "!")
-fname = input(name.title() + ", введите свою Фамилию.\n")
-pol = input(name.title() + ", введите свой Email или номер телефона.\n")
-gor = input(name.title() + ", где вы находитесь?\n")
+print("Привет " + name + "!")
+fname = input(name + ", введите свою Фамилию.\n")
+pol = input(name + ", введите свой Email или номер телефона.\n")
+gor = input(name + ", где вы находитесь?\n")
+
 n_us[pol] = {}
-n_us[pol]["first"] = name
-n_us[pol]["last"] = fname
-n_us[pol]["location"] = gor
+n_us[pol]["first"] = str(name)
+n_us[pol]["last"] = str(fname)
+n_us[pol]["location"] = str(gor)
 print(n_us)
-with open("123.json", "a") as user_data:
-    user_data.write(str(n_us))
-    
-for username, user_info in n_us.items():
-    print("\nПользователь: " + username)
-    full_name = user_info["first"] + " " + user_info["last"]
-    location = user_info["location"]
-    print("\tFull name: " + full_name.title())
-    print("\tLocation: " + location.title())
-print("\n")
+
+# Запись в файл
+with open("users.json", "a") as users_db:
+    json.dump(n_us, users_db)
+
+for username in n_us:
+    print("\nПользователь: {}".format(username))
+    full_name = n_us[username]["first"] + " " + n_us[username]["last"]
+    location = n_us[username]["location"]
+    print("\tFull name: " + full_name)
+    print("\tLocation: " + location)
+
+# Чтение из файла
+with open('users.json', 'r') as users_db:
+    users_data = users_db.read()
+    users = json.loads(users_data)
+
+for username in n_us:
+    print("\nСохраненные пользователи: {}".format(username))
+    full_name = n_us[username]["first"] + " " + n_us[username]["last"]
+    location = n_us[username]["location"]
+    print("\tFull name: " + full_name)
+    print("\tLocation: " + location)
