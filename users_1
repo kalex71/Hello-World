@@ -10,7 +10,7 @@ n_us[pol]["first"] = name
 n_us[pol]["last"] = fname
 n_us[pol]["location"] = gor
 print(n_us)
-with open("123.json", "w") as user_data:
+with open("123.json", "a") as user_data:
     user_data.write(str(n_us))
     
 for username, user_info in n_us.items():
