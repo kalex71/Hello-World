@@ -1,0 +1,22 @@
+# Создание библеотеки пользователей
+n_us = {}
+name = input("Здравствуйте!Я Ваш курьер\nвsедите Ваше имя\n")
+print("Привет " + name.title() + "!")
+fname = input(name.title() + ", введите свою Фамилию.\n")
+pol = input(name.title() + ", введите свой Email или номер телефона.\n")
+gor = input(name.title() + ", где вы находитесь?\n")
+n_us[pol] = {}
+n_us[pol]["first"] = name
+n_us[pol]["last"] = fname
+n_us[pol]["location"] = gor
+print(n_us)
+with open("123.json", "w") as user_data:
+    user_data.write(str(n_us))
+    
+for username, user_info in n_us.items():
+    print("\nПользователь: " + username)
+    full_name = user_info["first"] + " " + user_info["last"]
+    location = user_info["location"]
+    print("\tFull name: " + full_name.title())
+    print("\tLocation: " + location.title())
+print("\n")
