@@ -250,6 +250,11 @@ class DB:
                        (femali, worc, primechanie, description, costs, total))
         self.conn.commit()
         print(femali)
+        
+    # Выбрать из базы
+    def select_data(self, femali):
+        for z in self.c.execute('''SELECT * FROM vojg WHERE femali=(?)''', (femali,)):
+            print("{}: {}".format(femali, z[6]))
 
 
 spisok = ['власов', 'маслов', 'чиграшов', 'успенский', 'закурдяев']
